@@ -28,10 +28,10 @@ class OpportunityController extends Controller
             $query->where('client_id', $request->input('client_id'));
         }
 
-        // Search by name
+        // Search by title
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where('name', 'like', "%{$search}%");
+            $query->where('title', 'like', "%{$search}%");
         }
 
         $opportunities = $query->orderBy('created_at', 'desc')->paginate(15)->withQueryString();
@@ -56,15 +56,15 @@ class OpportunityController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'          => ['required', 'string', 'max:255'],
-            'client_id'     => ['required', 'exists:clients,id'],
-            'value'         => ['required', 'numeric', 'min:0'],
-            'stage'         => ['required', 'string', 'in:prospecting,qualification,proposal,negotiation,closed_won,closed_lost'],
-            'probability'   => ['nullable', 'integer', 'min:0', 'max:100'],
-            'close_date'    => ['nullable', 'date'],
-            'assigned_to'   => ['nullable', 'exists:users,id'],
-            'description'   => ['nullable', 'string'],
-            'notes'         => ['nullable', 'string'],
+            'title'              => ['required', 'string', 'max:255'],
+            'client_id'          => ['required', 'exists:clients,id'],
+            'value'              => ['required', 'numeric', 'min:0'],
+            'stage'              => ['required', 'string', 'in:prospecting,qualification,proposal,negotiation,closed_won,closed_lost'],
+            'probability'        => ['nullable', 'integer', 'min:0', 'max:100'],
+            'expected_close_date' => ['nullable', 'date'],
+            'assigned_to'        => ['nullable', 'exists:users,id'],
+            'description'        => ['nullable', 'string'],
+            'notes'              => ['nullable', 'string'],
         ]);
 
         $opportunity = Opportunity::create($validated);
@@ -75,7 +75,7 @@ class OpportunityController extends Controller
             'loggable_type' => Opportunity::class,
             'loggable_id'   => $opportunity->id,
             'type'          => 'created',
-            'description'   => "S'ha creat l'oportunitat: {$opportunity->name}",
+            'description'   => "S'ha creat l'oportunitat: {$opportunity->title}",
         ]);
 
         return redirect()->route('opportunities.index')
@@ -92,6 +92,7 @@ class OpportunityController extends Controller
             'assignedTo',
             'budgets',
             'activities.user',
+            'documents.user',
         ])->findOrFail($id);
 
         return view('opportunities.show', compact('opportunity'));
@@ -102,7 +103,7 @@ class OpportunityController extends Controller
      */
     public function edit($id)
     {
-        $opportunity = Opportunity::findOrFail($id);
+        $opportunity = Opportunity::with('documents.user')->findOrFail($id);
         $users = User::orderBy('name')->get();
         $clients = Client::orderBy('name')->get();
 
@@ -117,22 +118,22 @@ class OpportunityController extends Controller
         $opportunity = Opportunity::findOrFail($id);
 
         $validated = $request->validate([
-            'name'          => ['required', 'string', 'max:255'],
-            'client_id'     => ['required', 'exists:clients,id'],
-            'value'         => ['required', 'numeric', 'min:0'],
-            'stage'         => ['required', 'string', 'in:prospecting,qualification,proposal,negotiation,closed_won,closed_lost'],
-            'probability'   => ['nullable', 'integer', 'min:0', 'max:100'],
-            'close_date'    => ['nullable', 'date'],
-            'assigned_to'   => ['nullable', 'exists:users,id'],
-            'description'   => ['nullable', 'string'],
-            'notes'         => ['nullable', 'string'],
+            'title'              => ['required', 'string', 'max:255'],
+            'client_id'          => ['required', 'exists:clients,id'],
+            'value'              => ['required', 'numeric', 'min:0'],
+            'stage'              => ['required', 'string', 'in:prospecting,qualification,proposal,negotiation,closed_won,closed_lost'],
+            'probability'        => ['nullable', 'integer', 'min:0', 'max:100'],
+            'expected_close_date' => ['nullable', 'date'],
+            'assigned_to'        => ['nullable', 'exists:users,id'],
+            'description'        => ['nullable', 'string'],
+            'notes'              => ['nullable', 'string'],
         ]);
 
         $oldStage = $opportunity->stage;
         $opportunity->update($validated);
 
         // Log activity (with stage change detail if applicable)
-        $description = "S'ha actualitzat l'oportunitat: {$opportunity->name}";
+        $description = "S'ha actualitzat l'oportunitat: {$opportunity->title}";
         if ($oldStage !== $opportunity->stage) {
             $description .= " (etapa: {$oldStage} -> {$opportunity->stage})";
         }
@@ -162,7 +163,7 @@ class OpportunityController extends Controller
             'loggable_type' => Opportunity::class,
             'loggable_id'   => $opportunity->id,
             'type'          => 'deleted',
-            'description'   => "S'ha eliminat l'oportunitat: {$opportunity->name}",
+            'description'   => "S'ha eliminat l'oportunitat: {$opportunity->title}",
         ]);
 
         $opportunity->delete();

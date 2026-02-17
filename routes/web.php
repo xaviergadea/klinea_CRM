@@ -11,6 +11,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ApiDocController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginLogController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Auth\LoginController;
 
 // Redirect root to login or dashboard
@@ -35,4 +36,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api-docs', [ApiDocController::class, 'index'])->name('api-docs.index');
     Route::resource('users', UserController::class);
     Route::get('/login-logs', [LoginLogController::class, 'index'])->name('login-logs.index');
+
+    // Document management
+    Route::post('/documents/upload', [DocumentController::class, 'store'])->name('documents.store');
+    Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+    Route::get('/documents/{document}/download', [DocumentController::class, 'download'])->name('documents.download');
 });

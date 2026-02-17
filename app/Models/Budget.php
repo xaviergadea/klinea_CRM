@@ -41,4 +41,9 @@ class Budget extends Model
     {
         return $this->morphMany(Activity::class, 'loggable');
     }
+
+    public function documents(): MorphMany
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }
