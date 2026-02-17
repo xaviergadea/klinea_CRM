@@ -31,6 +31,13 @@ class LoginLogSeeder extends Seeder
             '91.205.44.108', '82.159.73.201', '86.42.188.55', '93.176.21.134',
             '80.25.167.89', '87.218.92.36', '94.69.140.73', '192.168.1.100',
             '192.168.1.105', '10.0.0.50', '172.16.0.25', '83.56.78.234',
+            '89.130.45.67', '92.54.178.23', '81.47.92.155', '85.19.203.44',
+            '90.88.156.31', '94.23.67.189', '83.71.214.98', '88.45.132.76',
+            '91.162.88.43', '79.234.51.120', '86.91.177.65', '93.48.205.12',
+            '80.157.34.88', '87.63.149.201', '95.81.42.167', '84.29.196.53',
+            '82.116.73.140', '89.72.158.94', '90.43.211.37', '81.88.125.62',
+            '92.175.66.108', '85.34.189.71', '94.57.103.28', '83.92.147.85',
+            '88.63.234.19', '91.28.176.54', '79.85.62.133', '86.174.99.47',
         ];
 
         // Define login patterns per user
@@ -47,6 +54,26 @@ class LoginLogSeeder extends Seeder
             5 => ['min_per_week' => 3, 'max_per_week' => 5, 'hours' => [9, 10, 11, 14, 15, 16, 17, 18], 'preferred_browser' => 3],
             // laura.fernandez - accede regularmente
             6 => ['min_per_week' => 4, 'max_per_week' => 6, 'hours' => [8, 9, 10, 11, 14, 15, 16], 'preferred_browser' => 0],
+            // sergio.ruiz - comercial activo
+            7 => ['min_per_week' => 4, 'max_per_week' => 6, 'hours' => [8, 9, 10, 11, 14, 15, 16, 17], 'preferred_browser' => 0],
+            // elena.torres - muy activa, madruga
+            8 => ['min_per_week' => 5, 'max_per_week' => 7, 'hours' => [7, 8, 9, 10, 11, 14, 15], 'preferred_browser' => 1],
+            // javier.moreno - horario estándar
+            9 => ['min_per_week' => 3, 'max_per_week' => 5, 'hours' => [9, 10, 11, 15, 16, 17], 'preferred_browser' => 0],
+            // raquel.diaz (manager) - accede regularmente
+            10 => ['min_per_week' => 4, 'max_per_week' => 5, 'hours' => [8, 9, 10, 11, 14, 15, 16], 'preferred_browser' => 2],
+            // david.romero - comercial, a veces tarde
+            11 => ['min_per_week' => 3, 'max_per_week' => 5, 'hours' => [10, 11, 14, 15, 16, 17, 18], 'preferred_browser' => 3],
+            // patricia.navarro - accede bastante
+            12 => ['min_per_week' => 4, 'max_per_week' => 6, 'hours' => [8, 9, 10, 11, 14, 15, 16], 'preferred_browser' => 0],
+            // alberto.gil - accede desde móvil a menudo
+            13 => ['min_per_week' => 3, 'max_per_week' => 5, 'hours' => [8, 9, 10, 14, 15, 16, 17], 'preferred_browser' => 4],
+            // marta.jimenez - muy activa
+            14 => ['min_per_week' => 5, 'max_per_week' => 7, 'hours' => [7, 8, 9, 10, 11, 13, 14, 15, 16], 'preferred_browser' => 1],
+            // roberto.castillo (manager) - acceso regular
+            15 => ['min_per_week' => 3, 'max_per_week' => 4, 'hours' => [9, 10, 11, 15, 16], 'preferred_browser' => 0],
+            // nuria.ortega - comercial estándar
+            16 => ['min_per_week' => 4, 'max_per_week' => 6, 'hours' => [8, 9, 10, 11, 14, 15, 16, 17], 'preferred_browser' => 3],
         ];
 
         $logs = [];

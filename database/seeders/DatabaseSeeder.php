@@ -30,6 +30,16 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Ana Martínez',       'email' => 'ana.martinez@klinea.eu',     'role' => 'manager'],
             ['name' => 'Pedro Sánchez',      'email' => 'pedro.sanchez@klinea.eu',    'role' => 'commercial'],
             ['name' => 'Laura Fernández',    'email' => 'laura.fernandez@klinea.eu',  'role' => 'commercial'],
+            ['name' => 'Sergio Ruiz',        'email' => 'sergio.ruiz@klinea.eu',      'role' => 'commercial'],
+            ['name' => 'Elena Torres',        'email' => 'elena.torres@klinea.eu',     'role' => 'commercial'],
+            ['name' => 'Javier Moreno',       'email' => 'javier.moreno@klinea.eu',    'role' => 'commercial'],
+            ['name' => 'Raquel Díaz',         'email' => 'raquel.diaz@klinea.eu',      'role' => 'manager'],
+            ['name' => 'David Romero',        'email' => 'david.romero@klinea.eu',     'role' => 'commercial'],
+            ['name' => 'Patricia Navarro',    'email' => 'patricia.navarro@klinea.eu', 'role' => 'commercial'],
+            ['name' => 'Alberto Gil',         'email' => 'alberto.gil@klinea.eu',      'role' => 'commercial'],
+            ['name' => 'Marta Jiménez',       'email' => 'marta.jimenez@klinea.eu',    'role' => 'commercial'],
+            ['name' => 'Roberto Castillo',    'email' => 'roberto.castillo@klinea.eu', 'role' => 'manager'],
+            ['name' => 'Nuria Ortega',        'email' => 'nuria.ortega@klinea.eu',     'role' => 'commercial'],
         ];
 
         foreach ($usersData as $userData) {
@@ -42,8 +52,8 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // Commercial user IDs (2-6)
-        $commercialIds = [2, 3, 4, 5, 6];
+        // Commercial user IDs (2-16)
+        $commercialIds = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
         // =====================================================================
         // LEADS (35)
