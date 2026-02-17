@@ -9,15 +9,11 @@
     <li class="breadcrumb-item active">Presupuestos</li>
 @endsection
 
-@push('styles')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-@endpush
-
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="mb-0">Listado de Presupuestos</h4>
         <a href="{{ route('budgets.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus me-1"></i> Nuevo Presupuesto
+            <i class="fas fa-plus mr-1"></i> Nuevo Presupuesto
         </a>
     </div>
 
@@ -108,8 +104,6 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#budgetsTable').DataTable({

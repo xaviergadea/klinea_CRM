@@ -39,21 +39,21 @@
     {{-- Action Buttons --}}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <a href="{{ route('budgets.index') }}" class="btn btn-outline-secondary">
-            <i class="fas fa-arrow-left me-1"></i> Volver al listado
+            <i class="fas fa-arrow-left mr-1"></i> Volver al listado
         </a>
         <div class="btn-group">
             <button type="button" class="btn btn-outline-primary" onclick="window.print()">
-                <i class="fas fa-print me-1"></i> Imprimir
+                <i class="fas fa-print mr-1"></i> Imprimir
             </button>
             <a href="{{ route('budgets.edit', $budget) }}" class="btn btn-warning">
-                <i class="fas fa-pencil-alt me-1"></i> Editar
+                <i class="fas fa-pencil-alt mr-1"></i> Editar
             </a>
             <form action="{{ route('budgets.destroy', $budget) }}" method="POST" class="d-inline"
                   onsubmit="return confirm('&iquest;Est&aacute;s seguro de que quieres eliminar este presupuesto?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">
-                    <i class="fas fa-trash me-1"></i> Eliminar
+                    <i class="fas fa-trash mr-1"></i> Eliminar
                 </button>
             </form>
         </div>
@@ -178,7 +178,7 @@
                 <div class="timeline">
                     @foreach($budget->activities as $activity)
                         <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 me-3">
+                            <div class="flex-shrink-0 mr-3">
                                 <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
                                     <i class="fas fa-clock fa-sm"></i>
                                 </div>

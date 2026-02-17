@@ -121,7 +121,7 @@
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">L&iacute;neas del Presupuesto</h5>
                         <button type="button" class="btn btn-sm btn-success" id="addLineBtn">
-                            <i class="fas fa-plus me-1"></i> A&ntilde;adir L&iacute;nea
+                            <i class="fas fa-plus mr-1"></i> A&ntilde;adir L&iacute;nea
                         </button>
                     </div>
                     <div class="card-body">
@@ -173,7 +173,7 @@
                 <div class="d-flex justify-content-end gap-2 mb-4">
                     <a href="{{ route('budgets.index') }}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-1"></i> Guardar
+                        <i class="fas fa-save mr-1"></i> Guardar
                     </button>
                 </div>
             </form>
