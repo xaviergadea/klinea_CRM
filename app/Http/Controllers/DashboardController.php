@@ -29,7 +29,7 @@ class DashboardController extends Controller
 
         $monthlyRevenue = Opportunity::where('stage', 'closed_won')
             ->select(
-                DB::raw("strftime('%Y-%m', expected_close_date) as month"),
+                DB::raw("DATE_FORMAT(expected_close_date, '%Y-%m') as month"),
                 DB::raw('SUM(value) as total')
             )
             ->groupBy('month')
