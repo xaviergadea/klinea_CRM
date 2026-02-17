@@ -41,16 +41,6 @@ class LoginLogController extends Controller
             ->whereDate('logged_in_at', today())
             ->count();
 
-        // Logins per user for chart
-        $loginsPerUser = User::select('users.name', DB::raw('COUNT(login_logs.id) as total'))
-            ->leftJoin('login_logs', function ($join) {
-                $join->on('users.id', '=', 'login_logs.user_id')
-                     ->where('login_logs.status', '=', 'success');
-            })
-            ->groupBy('users.id', 'users.name')
-            ->orderBy('total', 'desc')
-            ->get();
-
         // Logins per day for chart (last 30 days)
         $loginsPerDay = LoginLog::where('status', 'success')
             ->select(
@@ -78,7 +68,6 @@ class LoginLogController extends Controller
             'failedLogins',
             'uniqueIps',
             'todayLogins',
-            'loginsPerUser',
             'loginsPerDay',
             'loginsPerHour'
         ));

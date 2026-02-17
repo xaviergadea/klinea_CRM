@@ -52,33 +52,23 @@
 
     {{-- Charts --}}
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-users mr-1"></i> Accesos por Usuario</h3>
-                </div>
-                <div class="card-body">
-                    <canvas id="userChart" style="min-height: 250px;"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
+        <div class="col-md-6">
+            <div class="card card-outline card-info">
+                <div class="card-header py-2">
                     <h3 class="card-title"><i class="fas fa-chart-line mr-1"></i> Accesos por Día</h3>
                 </div>
-                <div class="card-body">
-                    <canvas id="dailyChart" style="min-height: 250px;"></canvas>
+                <div class="card-body py-2">
+                    <canvas id="dailyChart" height="120"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
+        <div class="col-md-6">
+            <div class="card card-outline card-success">
+                <div class="card-header py-2">
                     <h3 class="card-title"><i class="fas fa-clock mr-1"></i> Distribución por Hora</h3>
                 </div>
-                <div class="card-body">
-                    <canvas id="hourChart" style="min-height: 250px;"></canvas>
+                <div class="card-body py-2">
+                    <canvas id="hourChart" height="120"></canvas>
                 </div>
             </div>
         </div>
@@ -241,29 +231,6 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const userColors = ['#007bff','#28a745','#ffc107','#dc3545','#17a2b8','#6f42c1'];
-
-    // Accesos por Usuario - Doughnut
-    const userData = @json($loginsPerUser);
-    new Chart(document.getElementById('userChart').getContext('2d'), {
-        type: 'doughnut',
-        data: {
-            labels: userData.map(u => u.name),
-            datasets: [{
-                data: userData.map(u => u.total),
-                backgroundColor: userColors.slice(0, userData.length),
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom', labels: { boxWidth: 12, padding: 8 } }
-            }
-        }
-    });
-
     // Accesos por Día - Line
     const dailyData = @json($loginsPerDay);
     new Chart(document.getElementById('dailyChart').getContext('2d'), {
