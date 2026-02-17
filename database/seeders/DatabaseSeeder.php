@@ -549,5 +549,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at'    => $createdAt,
             ]);
         }
+
+        // Seed login logs
+        $this->call(LoginLogSeeder::class);
     }
 }

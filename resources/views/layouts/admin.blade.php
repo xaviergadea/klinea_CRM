@@ -98,6 +98,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('login-logs.index') }}" class="nav-link {{ request()->routeIs('login-logs.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-shield-alt"></i><p>Accesos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users-cog"></i><p>Usuarios</p>
                         </a>

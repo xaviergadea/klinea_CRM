@@ -10,6 +10,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ApiDocController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginLogController;
 use App\Http\Controllers\Auth\LoginController;
 
 // Redirect root to login or dashboard
@@ -33,4 +34,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
     Route::get('/api-docs', [ApiDocController::class, 'index'])->name('api-docs.index');
     Route::resource('users', UserController::class);
+    Route::get('/login-logs', [LoginLogController::class, 'index'])->name('login-logs.index');
 });
