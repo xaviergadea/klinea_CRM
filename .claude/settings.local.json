@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where:*)",
+      "Bash(export PATH:*)",
+      "Bash(php -r:*)",
+      "Bash(export SSL_CERT_FILE=\"/c/php83/cacert.pem\")",
+      "Bash(# The issue is the cert bundle. Let''s download a newer one using git''s cert export PATH=\"\"/c/php83:/c/ProgramData/ComposerSetup/bin:/mingw64/bin:/usr/bin:/usr/local/bin:/c/Windows/system32:$PATH\"\" # Git for Windows has its own CA bundle ls /mingw64/etc/ssl/certs/ca-bundle.crt || ls /mingw64/ssl/certs/ca-bundle.crt find /mingw64 -name \"\"ca-bundle*\"\" -o -name \"\"ca-certificates*\"\")",
+      "Bash(export PATH=\"/c/php83:/mingw64/bin:/usr/bin:/usr/local/bin:/c/Windows/system32:$PATH\")",
+      "Bash(php:*)",
+      "Bash(# Use openssl to get the full certificate chain export PATH=\"\"/c/php83:/mingw64/bin:/usr/bin:/usr/local/bin:/c/Windows/system32:$PATH\"\" echo | openssl s_client -showcerts -connect repo.packagist.org:443)",
+      "Bash(openssl s_client:*)",
+      "Bash(# The openssl s_client works fine \\(no AVG interception for Git''s openssl\\) # AVG only intercepts PHP''s curl. Let''s clone Laravel via git instead export PATH=\"\"/c/php83:/c/ProgramData/ComposerSetup/bin:/mingw64/bin:/usr/bin:/usr/local/bin:/c/Windows/system32:$PATH\"\" # First, check if we have the Laravel skeleton from the cache ls /tmp/laravel-temp/)",
+      "Bash(echo:*)",
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)"
+    ]
+  }
+}
